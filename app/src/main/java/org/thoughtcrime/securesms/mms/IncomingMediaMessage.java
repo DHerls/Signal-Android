@@ -46,7 +46,8 @@ public class IncomingMediaMessage {
                               long expiresIn,
                               boolean expirationUpdate,
                               boolean viewOnce,
-                              boolean unidentified)
+                              boolean unidentified,
+                              Optional<List<Contact>> sharedContacts)
   {
     this.from             = from;
     this.groupId          = groupId.orNull();
@@ -62,6 +63,8 @@ public class IncomingMediaMessage {
     this.unidentified     = unidentified;
 
     this.attachments.addAll(attachments);
+    this.sharedContacts.addAll(sharedContacts.or(Collections.emptyList()));
+
   }
 
   public IncomingMediaMessage(@NonNull RecipientId from,

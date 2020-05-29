@@ -104,7 +104,6 @@ import org.thoughtcrime.securesms.recipients.LiveRecipient;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientForeverObserver;
 import org.thoughtcrime.securesms.recipients.RecipientId;
-import org.thoughtcrime.securesms.recipients.ui.bottomsheet.RecipientBottomSheetDialogFragment;
 import org.thoughtcrime.securesms.revealable.ViewOnceMessageView;
 import org.thoughtcrime.securesms.revealable.ViewOnceUtil;
 import org.thoughtcrime.securesms.stickers.StickerUrl;
@@ -584,6 +583,7 @@ public class ConversationItem extends LinearLayout implements BindableConversati
       sharedContactStub.get().setOnLongClickListener(passthroughClickListener);
 
       setSharedContactCorners(messageRecord, previousRecord, nextRecord, isGroupThread);
+      setSharedContactWidth(messageRecord);
 
       ViewUtil.updateLayoutParams(bodyText, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
       ViewUtil.updateLayoutParams(groupSenderHolder, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
@@ -796,13 +796,23 @@ public class ConversationItem extends LinearLayout implements BindableConversati
   }
 
   private void setSharedContactCorners(@NonNull MessageRecord current, @NonNull Optional<MessageRecord> previous, @NonNull Optional<MessageRecord> next, boolean isGroupThread) {
-    if (isSingularMessage(current, previous, next, isGroupThread) || isEndOfMessageCluster(current, next, isGroupThread)) {
-      sharedContactStub.get().setSingularStyle();
-    } else if (current.isOutgoing()) {
-      sharedContactStub.get().setClusteredOutgoingStyle();
-    } else {
-      sharedContactStub.get().setClusteredIncomingStyle();
+    if (TextUtils.isEmpty(messageRecord.getDisplayBody(getContext()))){
+      if (isSingularMessage(current, previous, next, isGroupThread) || isEndOfMessageCluster(current, next, isGroupThread)) {
+          sharedContactStub.get().setSingularStyle();
+      } else if (current.isOutgoing()) {
+          sharedContactStub.get().setClusteredOutgoingStyle();
+      } else {
+          sharedContactStub.get().setClusteredIncomingStyle();
+      }
     }
+
+  }
+
+  private void setSharedContactWidth(@NonNull MessageRecord current) {
+    if (!TextUtils.isEmpty(current.getDisplayBody(getContext()))){
+      sharedContactStub.get().getLayoutParams().width = ViewGroup.LayoutParams.MATCH_PARENT;;
+    }
+
   }
 
   private void setLinkPreviewCorners(@NonNull MessageRecord current, @NonNull Optional<MessageRecord> previous, @NonNull Optional<MessageRecord> next, boolean isGroupThread, boolean bigImage) {
@@ -965,7 +975,7 @@ public class ConversationItem extends LinearLayout implements BindableConversati
   private ConversationItemFooter getActiveFooter(@NonNull MessageRecord messageRecord) {
     if (hasSticker(messageRecord)) {
       return stickerFooter;
-    } else if (hasSharedContact(messageRecord)) {
+    } else if (hasSharedContact(messageRecord) && TextUtils.isEmpty(messageRecord.getDisplayBody(getContext()))) {
       return sharedContactStub.get().getFooter();
     } else if (hasOnlyThumbnail(messageRecord) && TextUtils.isEmpty(messageRecord.getDisplayBody(getContext()))) {
       return mediaThumbnailStub.get().getFooter();
@@ -1220,7 +1230,7 @@ public class ConversationItem extends LinearLayout implements BindableConversati
     @Override
     public void onClick(View view) {
       if (eventListener != null && batchSelected.isEmpty() && messageRecord.isMms() && !((MmsMessageRecord) messageRecord).getSharedContacts().isEmpty()) {
-        eventListener.onSharedContactDetailsClicked(((MmsMessageRecord) messageRecord).getSharedContacts().get(0), sharedContactStub.get().getAvatarView());
+        eventListener.onSharedContactDetailsClicked(((SharedContactView) view).getContact(), ((SharedContactView) view).getAvatarView());
       } else {
         passthroughClickListener.onClick(view);
       }
