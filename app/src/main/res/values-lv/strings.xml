@@ -1025,7 +1025,7 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <string name="MessageNotifier_open_signal_to_check_for_recent_notifications">Atveriet Signālu, lai pārbaudītu, vai nav nesenu nelasītu paziņojumu.</string>
   <string name="MessageNotifier_contact_message">%1$s %2$s</string>
   <string name="MessageNotifier_unknown_contact_message">Kontakts</string>
-  <string name="MessageNotifier_reacted_s_to_s">Reaģēja %1$s uz %2$s</string>
+  <string name="MessageNotifier_reacted_s_to_s">Reaģēja %1$s uz “%2$s”</string>
   <string name="MessageNotifier_reacted_s_to_your_video">Reaģēja %1$s  uz Jūsu video.</string>
   <string name="MessageNotifier_reacted_s_to_your_image">Reaģēja %1$s uz Jūsu attēlu</string>
   <string name="MessageNotifier_reacted_s_to_your_file">Reaģēja %1$s uz Jūsu failu. </string>
@@ -1617,7 +1617,7 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <!--conversation-->
   <string name="conversation__menu_add_attachment">Pievienot pielikumu</string>
   <string name="conversation__menu_edit_group">Rediģēt grupu</string>
-  <string name="conversation__menu_manage_group">Pārvaldīt grupu</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation__menu_manage_group">Pārvaldīt grupu</string> -->
   <string name="conversation__menu_leave_group">Pamest grupu</string>
   <string name="conversation__menu_view_all_media">Visi multimediji</string>
   <string name="conversation__menu_conversation_settings">Sarunas iestatījumi</string>
@@ -1862,6 +1862,7 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <string name="preferences_app_protection__add_extra_security_by_requiring_your_signal_pin_to_register">Pievienojiet papildus drošību ievadīt PIN reģistrējoties Signal no jauna.</string>
   <string name="preferences_app_protection__turn_off">Izslēgt</string>
   <string name="preferences_app_protection__confirm_pin">Apstiprināt PIN</string>
+  <string name="preferences_app_protection__confirm_your_signal_pin">Apstipriniet Signal PIN</string>
   <string name="preferences_app_protection__incorrect_pin_try_again">Nepareizs PIN. Mēģiniet vēlreiz.</string>
   <string name="preferences_app_protection__failed_to_enable_registration_lock">Reģistrācijas bloķēšanas iestatīšanas laikā notikusi kļūda.</string>
   <string name="preferences_app_protection__failed_to_disable_registration_lock">Reģistrācijas bloķēšanas atiestatīšanas laikā notikusi kļūda.</string>
