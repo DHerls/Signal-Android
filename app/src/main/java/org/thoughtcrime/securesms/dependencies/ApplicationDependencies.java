@@ -2,23 +2,27 @@ package org.thoughtcrime.securesms.dependencies;
 
 import android.app.Application;
 
+import androidx.annotation.MainThread;
 import androidx.annotation.NonNull;
 
 import org.thoughtcrime.securesms.BuildConfig;
-import org.thoughtcrime.securesms.IncomingMessageProcessor;
-import org.thoughtcrime.securesms.gcm.MessageRetriever;
+import org.thoughtcrime.securesms.messages.IncomingMessageProcessor;
+import org.thoughtcrime.securesms.messages.BackgroundMessageRetriever;
 import org.thoughtcrime.securesms.groups.GroupsV2AuthorizationMemoryValueCache;
 import org.thoughtcrime.securesms.groups.v2.processing.GroupsV2StateProcessor;
 import org.thoughtcrime.securesms.jobmanager.JobManager;
 import org.thoughtcrime.securesms.keyvalue.KeyValueStore;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.megaphone.MegaphoneRepository;
+import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.push.SignalServiceNetworkAccess;
 import org.thoughtcrime.securesms.recipients.LiveRecipientCache;
-import org.thoughtcrime.securesms.service.IncomingMessageObserver;
+import org.thoughtcrime.securesms.messages.IncomingMessageObserver;
+import org.thoughtcrime.securesms.service.TrimThreadsByDateManager;
 import org.thoughtcrime.securesms.util.EarlyMessageCache;
 import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.FrameRateTracker;
+import org.thoughtcrime.securesms.util.Hex;
 import org.thoughtcrime.securesms.util.IasKeyStore;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.signalservice.api.KeyBackupService;
@@ -44,8 +48,9 @@ public class ApplicationDependencies {
   private static SignalServiceAccountManager  accountManager;
   private static SignalServiceMessageSender   messageSender;
   private static SignalServiceMessageReceiver messageReceiver;
+  private static IncomingMessageObserver      incomingMessageObserver;
   private static IncomingMessageProcessor     incomingMessageProcessor;
-  private static MessageRetriever             messageRetriever;
+  private static BackgroundMessageRetriever   backgroundMessageRetriever;
   private static LiveRecipientCache           recipientCache;
   private static JobManager                   jobManager;
   private static FrameRateTracker             frameRateTracker;
@@ -55,14 +60,19 @@ public class ApplicationDependencies {
   private static GroupsV2StateProcessor       groupsV2StateProcessor;
   private static GroupsV2Operations           groupsV2Operations;
   private static EarlyMessageCache            earlyMessageCache;
+  private static MessageNotifier              messageNotifier;
+  private static TrimThreadsByDateManager     trimThreadsByDateManager;
 
+  @MainThread
   public static synchronized void init(@NonNull Application application, @NonNull Provider provider) {
     if (ApplicationDependencies.application != null || ApplicationDependencies.provider != null) {
       throw new IllegalStateException("Already initialized!");
     }
 
-    ApplicationDependencies.application = application;
-    ApplicationDependencies.provider    = provider;
+    ApplicationDependencies.application              = application;
+    ApplicationDependencies.provider                 = provider;
+    ApplicationDependencies.messageNotifier          = provider.provideMessageNotifier();
+    ApplicationDependencies.trimThreadsByDateManager = provider.provideTrimThreadsByDateManager();
   }
 
   public static @NonNull Application getApplication() {
@@ -104,6 +114,7 @@ public class ApplicationDependencies {
   public static synchronized @NonNull KeyBackupService getKeyBackupService() {
     return getSignalServiceAccountManager().getKeyBackupService(IasKeyStore.getIasKeyStore(application),
                                                                 BuildConfig.KBS_ENCLAVE_NAME,
+                                                                Hex.fromStringOrThrow(BuildConfig.KBS_SERVICE_ID),
                                                                 BuildConfig.KBS_MRENCLAVE,
                                                                 10);
   }
@@ -164,14 +175,14 @@ public class ApplicationDependencies {
     return incomingMessageProcessor;
   }
 
-  public static synchronized @NonNull MessageRetriever getMessageRetriever() {
+  public static synchronized @NonNull BackgroundMessageRetriever getBackgroundMessageRetriever() {
     assertInitialization();
 
-    if (messageRetriever == null) {
-      messageRetriever = provider.provideMessageRetriever();
+    if (backgroundMessageRetriever == null) {
+      backgroundMessageRetriever = provider.provideBackgroundMessageRetriever();
     }
 
-    return messageRetriever;
+    return backgroundMessageRetriever;
   }
 
   public static synchronized @NonNull LiveRecipientCache getRecipientCache() {
@@ -234,6 +245,26 @@ public class ApplicationDependencies {
     return earlyMessageCache;
   }
 
+  public static synchronized @NonNull MessageNotifier getMessageNotifier() {
+    assertInitialization();
+    return messageNotifier;
+  }
+
+  public static synchronized @NonNull IncomingMessageObserver getIncomingMessageObserver() {
+    assertInitialization();
+
+    if (incomingMessageObserver == null) {
+      incomingMessageObserver = provider.provideIncomingMessageObserver();
+    }
+
+    return incomingMessageObserver;
+  }
+
+  public static synchronized @NonNull TrimThreadsByDateManager getTrimThreadsByDateManager() {
+    assertInitialization();
+    return trimThreadsByDateManager;
+  }
+
   private static void assertInitialization() {
     if (application == null || provider == null) {
       throw new UninitializedException();
@@ -247,13 +278,16 @@ public class ApplicationDependencies {
     @NonNull SignalServiceMessageReceiver provideSignalServiceMessageReceiver();
     @NonNull SignalServiceNetworkAccess provideSignalServiceNetworkAccess();
     @NonNull IncomingMessageProcessor provideIncomingMessageProcessor();
-    @NonNull MessageRetriever provideMessageRetriever();
+    @NonNull BackgroundMessageRetriever provideBackgroundMessageRetriever();
     @NonNull LiveRecipientCache provideRecipientCache();
     @NonNull JobManager provideJobManager();
     @NonNull FrameRateTracker provideFrameRateTracker();
     @NonNull KeyValueStore provideKeyValueStore();
     @NonNull MegaphoneRepository provideMegaphoneRepository();
     @NonNull EarlyMessageCache provideEarlyMessageCache();
+    @NonNull MessageNotifier provideMessageNotifier();
+    @NonNull IncomingMessageObserver provideIncomingMessageObserver();
+    @NonNull TrimThreadsByDateManager provideTrimThreadsByDateManager();
   }
 
   private static class UninitializedException extends IllegalStateException {

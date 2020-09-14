@@ -14,11 +14,17 @@ import java.util.Set;
 import static junit.framework.TestCase.assertTrue;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.thoughtcrime.securesms.testutil.TestHelpers.mapOf;
 
 public class FeatureFlagsTest extends BaseUnitTest {
 
   private static final String A = "A";
   private static final String B = "B";
+
+  @Test
+  public void disallowForcedFlags() {
+    assertTrue(FeatureFlags.getForcedValues().isEmpty());
+  }
 
   @Test
   public void updateInternal_newValue_ignoreNotInRemoteCapable() {
@@ -64,6 +70,20 @@ public class FeatureFlagsTest extends BaseUnitTest {
   }
 
   @Test
+  public void updateInternal_newValue_hotSwap_integer() {
+    UpdateResult result = FeatureFlags.updateInternal(mapOf(A, 1),
+                                                      mapOf(),
+                                                      mapOf(),
+                                                      setOf(A),
+                                                      setOf(A),
+                                                      setOf());
+
+    assertEquals(mapOf(A, 1), result.getMemory());
+    assertEquals(mapOf(A, 1), result.getDisk());
+    assertEquals(Change.CHANGED, result.getMemoryChanges().get(A));
+  }
+
+  @Test
   public void updateInternal_newValue_sticky() {
     UpdateResult result = FeatureFlags.updateInternal(mapOf(A, true),
                                                       mapOf(),
@@ -106,6 +126,20 @@ public class FeatureFlagsTest extends BaseUnitTest {
   }
 
   @Test
+  public void updateInternal_replaceValue_integer() {
+    UpdateResult result = FeatureFlags.updateInternal(mapOf(A, 2),
+                                                      mapOf(A, 1),
+                                                      mapOf(A, 1),
+                                                      setOf(A),
+                                                      setOf(),
+                                                      setOf());
+
+    assertEquals(mapOf(A, 1), result.getMemory());
+    assertEquals(mapOf(A, 2), result.getDisk());
+    assertTrue(result.getMemoryChanges().isEmpty());
+  }
+
+  @Test
   public void updateInternal_replaceValue_hotSwap() {
     UpdateResult result = FeatureFlags.updateInternal(mapOf(A, true),
                                                       mapOf(A, false),
@@ -117,6 +151,20 @@ public class FeatureFlagsTest extends BaseUnitTest {
     assertEquals(mapOf(A, true), result.getMemory());
     assertEquals(mapOf(A, true), result.getDisk());
     assertEquals(Change.ENABLED, result.getMemoryChanges().get(A));
+  }
+
+  @Test
+  public void updateInternal_replaceValue_hotSwa_integer() {
+    UpdateResult result = FeatureFlags.updateInternal(mapOf(A, 2),
+                                                      mapOf(A, 1),
+                                                      mapOf(A, 1),
+                                                      setOf(A),
+                                                      setOf(A),
+                                                      setOf());
+
+    assertEquals(mapOf(A, 2), result.getMemory());
+    assertEquals(mapOf(A, 2), result.getDisk());
+    assertEquals(Change.CHANGED, result.getMemoryChanges().get(A));
   }
 
   @Test
@@ -366,22 +414,5 @@ public class FeatureFlagsTest extends BaseUnitTest {
 
   private static <V> Set<V> setOf(V... values) {
     return new HashSet<>(Arrays.asList(values));
-  }
-
-  private static <K, V> Map<K, V> mapOf() {
-    return new HashMap<>();
-  }
-
-  private static <K, V> Map<K, V> mapOf(K k, V v) {
-    return new HashMap<K, V>() {{
-      put(k, v);
-    }};
-  }
-
-  private static <K, V> Map<K, V> mapOf(K k1, V v1, K k2, V v2) {
-    return new HashMap<K, V>() {{
-      put(k1, v1);
-      put(k2, v2);
-    }};
   }
 }

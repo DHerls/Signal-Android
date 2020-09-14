@@ -151,6 +151,7 @@ public final class PushDecryptMessageJob extends BaseJob {
   }
 
   private @NonNull List<Job> handleMessage(@NonNull SignalServiceEnvelope envelope) throws NoSenderException {
+    Log.i(TAG, "Processing message ID " + envelope.getTimestamp());
     try {
       SignalProtocolStore  axolotlStore = new SignalProtocolStoreImpl(context);
       SignalServiceAddress localAddress = new SignalServiceAddress(Optional.of(TextSecurePreferences.getLocalUuid(context)), Optional.of(TextSecurePreferences.getLocalNumber(context)));
@@ -236,10 +237,13 @@ public final class PushDecryptMessageJob extends BaseJob {
     if (sender == null) throw new NoSenderException();
 
     GroupId groupId = null;
-    try {
-      groupId = GroupUtil.idFromGroupContext(e.getGroup().orNull());
-    } catch (BadGroupIdException ex) {
-      Log.w(TAG, "Bad group id found in unsupported data message", ex);
+
+    if (e.getGroup().isPresent()) {
+      try {
+        groupId = GroupUtil.idFromGroupContext(e.getGroup().get());
+      } catch (BadGroupIdException ex) {
+        Log.w(TAG, "Bad group id found in unsupported data message", ex);
+      }
     }
 
     return new PushProcessMessageJob.ExceptionMetadata(sender,

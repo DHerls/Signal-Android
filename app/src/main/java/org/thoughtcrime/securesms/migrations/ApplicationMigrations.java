@@ -39,7 +39,7 @@ public class ApplicationMigrations {
 
   private static final int LEGACY_CANONICAL_VERSION = 455;
 
-  public static final int CURRENT_VERSION = 14;
+  public static final int CURRENT_VERSION = 18;
 
   private static final class Version {
     static final int LEGACY             = 1;
@@ -53,9 +53,13 @@ public class ApplicationMigrations {
     //static final int TEST_ARGON2        = 9;
     static final int SWOON_STICKERS     = 10;
     static final int STORAGE_SERVICE    = 11;
-    static final int STORAGE_KEY_ROTATE = 12;
+    //static final int STORAGE_KEY_ROTATE = 12;
     static final int REMOVE_AVATAR_ID   = 13;
     static final int STORAGE_CAPABILITY = 14;
+    static final int PIN_REMINDER       = 15;
+    static final int VERSIONED_PROFILE  = 16;
+    static final int PIN_OPT_OUT        = 17;
+    static final int TRIM_SETTINGS      = 18;
   }
 
   /**
@@ -71,6 +75,7 @@ public class ApplicationMigrations {
 
     if (!isUpdate(context)) {
       Log.d(TAG, "Not an update. Skipping.");
+      VersionTracker.updateLastSeenVersion(context);
       return;
     }
 
@@ -224,6 +229,22 @@ public class ApplicationMigrations {
 
     if (lastSeenVersion < Version.STORAGE_CAPABILITY) {
       jobs.put(Version.STORAGE_CAPABILITY, new StorageCapabilityMigrationJob());
+    }
+
+    if (lastSeenVersion < Version.PIN_REMINDER) {
+      jobs.put(Version.PIN_REMINDER, new PinReminderMigrationJob());
+    }
+
+    if (lastSeenVersion < Version.VERSIONED_PROFILE) {
+      jobs.put(Version.VERSIONED_PROFILE, new ProfileMigrationJob());
+    }
+
+    if (lastSeenVersion < Version.PIN_OPT_OUT) {
+      jobs.put(Version.PIN_OPT_OUT, new PinOptOutMigration());
+    }
+
+    if (lastSeenVersion < Version.TRIM_SETTINGS) {
+      jobs.put(Version.TRIM_SETTINGS, new TrimByLengthSettingsMigrationJob());
     }
 
     return jobs;

@@ -123,7 +123,7 @@
   <string name="ContactShareEditActivity_type_missing">Інший</string>
   <string name="ContactShareEditActivity_invalid_contact">Обраний контакт не дійсний</string>
   <!--ConversationItem-->
-  <string name="ConversationItem_error_not_delivered">Помилка відправлення, торкніться для подробиць</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationItem_error_not_delivered">Помилка відправлення, торкніться для подробиць</string> -->
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">Отримано повідомлення обміну ключами, торкніться, щоб продовжити.</string>
   <string name="ConversationItem_group_action_left">%1$s покидає групу.</string>
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Скористатися незашифрованим SMS як запасним варіантом?</string>
@@ -157,7 +157,7 @@
   <string name="ConversationActivity_transport_insecure_mms">Незахищене MMS</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
   <string name="ConversationActivity_lets_switch_to_signal">Давай перейдемо у Signal %1$s</string>
-  <string name="ConversationActivity_error_leaving_group">Помилка при виході з групи</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_error_leaving_group">Помилка при виході з групи</string> -->
   <string name="ConversationActivity_specify_recipient">Будь ласка, виберіть контакт</string>
   <string name="ConversationActivity_unblock_this_contact_question">Розблокувати цей контакт?</string>
   <string name="ConversationActivity_unblock_this_group_question">Розблокувати цю групу?</string>
@@ -339,21 +339,21 @@
   <string name="GiphyFragmentPagerAdapter_gifs">GIF</string>
   <string name="GiphyFragmentPagerAdapter_stickers">Наліпки</string>
   <!--GroupCreateActivity-->
-  <string name="GroupCreateActivity_actionbar_title">Нова група</string>
-  <string name="GroupCreateActivity_actionbar_edit_title">Редагувати групу</string>
-  <string name="GroupCreateActivity_group_name_hint">Назва групи</string>
-  <string name="GroupCreateActivity_actionbar_mms_title">Нова MMS група</string>
-  <string name="GroupCreateActivity_contacts_dont_support_push">Ви обрали контакт, який не підтримує групи Signal, тому це буде MMS група.</string>
-  <string name="GroupCreateActivity_youre_not_registered_for_signal">Ви не зареєстровані для використання повідомлень та викликів Signal тому групи Signal відключено. Спробуйте перереєструватися у Налаштуваннях &gt; Додатково.</string>
-  <string name="GroupCreateActivity_contacts_no_members">Для вашої групи потрібна щонайменше одна особа!</string>
-  <string name="GroupCreateActivity_contacts_invalid_number">Один із учасників групи має номер, що не може бути прочитаний належним чином. Будь ласка, виправте або вилучіть той контакт і спробуйте ще раз.</string>
-  <string name="GroupCreateActivity_avatar_content_description">Зображення групи</string>
-  <string name="GroupCreateActivity_menu_apply_button">Застосувати</string>
-  <string name="GroupCreateActivity_creating_group">Створення %1$s…</string>
-  <string name="GroupCreateActivity_updating_group">Оновлення %1$s…</string>
-  <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Не вдалося додати %1$s, тому що вони не є користувачами Signal.</string>
-  <string name="GroupCreateActivity_loading_group_details">Завантаження деталей групи…</string>
-  <string name="GroupCreateActivity_youre_already_in_the_group">Ви вже у групі.</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_actionbar_title">Нова група</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_actionbar_edit_title">Редагувати групу</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_group_name_hint">Назва групи</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_actionbar_mms_title">Нова MMS група</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_contacts_dont_support_push">Ви обрали контакт, який не підтримує групи Signal, тому це буде MMS група.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_youre_not_registered_for_signal">Ви не зареєстровані для використання повідомлень та викликів Signal тому групи Signal відключено. Спробуйте перереєструватися у Налаштуваннях &gt; Додатково.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_contacts_no_members">Для вашої групи потрібна щонайменше одна особа!</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_contacts_invalid_number">Один із учасників групи має номер, що не може бути прочитаний належним чином. Будь ласка, виправте або вилучіть той контакт і спробуйте ще раз.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_avatar_content_description">Зображення групи</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_menu_apply_button">Застосувати</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_creating_group">Створення %1$s…</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_updating_group">Оновлення %1$s…</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Не вдалося додати %1$s, тому що вони не є користувачами Signal.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_loading_group_details">Завантаження деталей групи…</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_youre_already_in_the_group">Ви вже у групі.</string> -->
   <!--GroupShareProfileView-->
   <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">Поділитися іменем профілю та світлиною з цією групою?</string>
   <string name="GroupShareProfileView_do_you_want_to_make_your_profile_name_and_photo_visible_to_all_current_and_future_members_of_this_group">Зробити ім\'я профілю та світлину видимою для усіх теперішніх та майбутніх учасників цієї групи?</string>
@@ -391,8 +391,8 @@
   <!--Job-->
   <string name="Job_working_in_the_background">Опрацьовується в фоні…</string>
   <!--MessageDetailsRecipient-->
-  <string name="MessageDetailsRecipient_failed_to_send">Не вдалося надіслати</string>
-  <string name="MessageDetailsRecipient_new_safety_number">Новий номер безпеки</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageDetailsRecipient_failed_to_send">Не вдалося надіслати</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageDetailsRecipient_new_safety_number">Новий номер безпеки</string> -->
   <!--LongMessageActivity-->
   <string name="LongMessageActivity_unable_to_find_message">Неможливо знайти повідомлення</string>
   <string name="LongMessageActivity_message_from_s">Повідомлення від %1$s</string>
@@ -462,7 +462,7 @@
   <string name="PassphraseChangeActivity_enter_new_passphrase_exclamation">Введіть нову фразу-пароль!</string>
   <!--DeviceProvisioningActivity-->
   <string name="DeviceProvisioningActivity_link_this_device">З\'язати цей пристрій?</string>
-  <string name="DeviceProvisioningActivity_cancel">СКАСУВАТИ</string>
+  <!-- Removed by excludeNonTranslatables <string name="DeviceProvisioningActivity_cancel">СКАСУВАТИ</string> -->
   <string name="DeviceProvisioningActivity_continue">ПРОДОВЖИТИ</string>
   <string name="DeviceProvisioningActivity_content_intro">Він зможе</string>
   <string name="DeviceProvisioningActivity_content_bullets">
@@ -639,7 +639,7 @@
   <string name="UnverifiedSendDialog_send_message">Надіслати повідомлення?</string>
   <string name="UnverifiedSendDialog_send">Надіслати</string>
   <!--UsernameEditFragment-->
-  <string name="UsernameEditFragment_submit">Надіслати</string>
+  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_submit">Надіслати</string> -->
   <string name="UsernameEditFragment_delete">Видалити</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Ваш контакт працює на давнішій версії Signal. Будь ласка, попросіть його/її оновитися перед перевіркою вашого номера безпеки.</string>
@@ -661,7 +661,7 @@
   <!--MuteDialog-->
   <string name="MuteDialog_mute_notifications">Вимкнути звук сповіщень</string>
   <!--OutdatedBuildReminder-->
-  <string name="OutdatedBuildReminder_no_web_browser_installed">Браузер не встановлено!</string>
+  <!-- Removed by excludeNonTranslatables <string name="OutdatedBuildReminder_no_web_browser_installed">Браузер не встановлено!</string> -->
   <!--ApplicationMigrationService-->
   <string name="ApplicationMigrationService_import_in_progress">Імпортування</string>
   <string name="ApplicationMigrationService_importing_text_messages">Імпортування текстових повідомлень</string>
@@ -942,18 +942,18 @@
   <!--recipient_preferences_activity-->
   <string name="recipient_preference_activity__shared_media">Спільні медіа</string>
   <!--recipient_preferences-->
-  <string name="recipient_preferences__mute_conversation">Вимкнути звук для розмови</string>
-  <string name="recipient_preferences__custom_notifications">Власні повідомлення</string>
-  <string name="recipient_preferences__custom_notifications_settings">Налаштування системних сповіщень</string>
-  <string name="recipient_preferences__notification_sound">Звук сповіщення</string>
-  <string name="recipient_preferences__vibrate">Вібрація</string>
-  <string name="recipient_preferences__block">Заблокувати</string>
-  <string name="recipient_preferences__color">Колір</string>
-  <string name="recipient_preferences__view_safety_number">Перевірити номер безпеки</string>
-  <string name="recipient_preferences__chat_settings">Налаштування розмови</string>
-  <string name="recipient_preferences__privacy">Приватність</string>
-  <string name="recipient_preferences__call_settings">Налаштування дзвінків</string>
-  <string name="recipient_preferences__ringtone">Мелодія дзвінка</string>
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__mute_conversation">Вимкнути звук для розмови</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__custom_notifications">Власні повідомлення</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__custom_notifications_settings">Налаштування системних сповіщень</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__notification_sound">Звук сповіщення</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__vibrate">Вібрація</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__block">Заблокувати</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__color">Колір</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__view_safety_number">Перевірити номер безпеки</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__chat_settings">Налаштування розмови</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__privacy">Приватність</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__call_settings">Налаштування дзвінків</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__ringtone">Мелодія дзвінка</string> -->
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Виклик Signal </string>
   <!--registration_activity-->
@@ -985,9 +985,9 @@
   <string name="message_details_header__received">Одержано</string>
   <string name="message_details_header__disappears">Зникає</string>
   <string name="message_details_header__via">Через</string>
-  <string name="message_details_header__to">Кому:</string>
-  <string name="message_details_header__from">Від:</string>
-  <string name="message_details_header__with">З:</string>
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__to">Кому:</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__from">Від:</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__with">З:</string> -->
   <!--AndroidManifest.xml-->
   <string name="AndroidManifest__create_passphrase">Створити фразу-пароль</string>
   <string name="AndroidManifest__select_contacts">Обрати контакти</string>
@@ -1035,7 +1035,7 @@
   <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">Використовувати Signal для усіх вхідних мультимедійних повідомлень</string>
   <string name="preferences__pref_enter_sends_title">Enter надсилає повідомлення</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Натиснення кнопки Enter відправить повідомлення</string>
-  <string name="preferences__send_link_previews">Перегляд відправлених посилань</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__send_link_previews">Перегляд відправлених посилань</string> -->
   <string name="preferences__choose_identity">Обрати особистість</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Оберіть себе зі списку контактів.</string>
   <string name="preferences__change_passphrase">Змінити фразу-пароль</string>
@@ -1084,13 +1084,13 @@
   <string name="preferences__mmsc_password">Пароль MMSC</string>
   <string name="preferences__sms_delivery_reports">Звіти про доставку SMS</string>
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Запитувати звіт про доставку для кожного відісланого вами SMS</string>
-  <string name="preferences__automatically_delete_older_messages_once_a_conversation_exceeds_a_specified_length">Автоматично видаляти старі повідомлення, коли довжина розмови перевищує задану</string>
-  <string name="preferences__delete_old_messages">Видаляти старі повідомлення</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__automatically_delete_older_messages_once_a_conversation_exceeds_a_specified_length">Автоматично видаляти старі повідомлення, коли довжина розмови перевищує задану</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="preferences__delete_old_messages">Видаляти старі повідомлення</string> -->
   <string name="preferences__chats">Чати та медіа</string>
   <string name="preferences__storage">Сховище</string>
   <string name="preferences__conversation_length_limit">Обмеження довжини розмови</string>
-  <string name="preferences__trim_all_conversations_now">Обрізати усі розмови зараз</string>
-  <string name="preferences__scan_through_all_conversations_and_enforce_conversation_length_limits">Переглянути всі розмови і привести їх довжину у відповідність із заданою</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__trim_all_conversations_now">Обрізати усі розмови зараз</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="preferences__scan_through_all_conversations_and_enforce_conversation_length_limits">Переглянути всі розмови і привести їх довжину у відповідність із заданою</string> -->
   <string name="preferences__linked_devices">Прив\'язані пристрої</string>
   <string name="preferences__light_theme">Світла</string>
   <string name="preferences__dark_theme">Темна</string>
@@ -1112,7 +1112,7 @@
   <string name="preferences_chats__when_using_wifi">При використанні Wi-Fi</string>
   <string name="preferences_chats__when_roaming">Під час роумінгу</string>
   <string name="preferences_chats__media_auto_download">Автозавантаження медіа</string>
-  <string name="preferences_chats__message_trimming">Обрізка повідомлень</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences_chats__message_trimming">Обрізка повідомлень</string> -->
   <string name="preferences_storage__audio">Аудіо</string>
   <string name="preferences_advanced__use_system_emoji">Використовувати системні emoji</string>
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">Вимкнути вбудовану в Signal підтримку emoji</string>
@@ -1209,16 +1209,16 @@
   <string name="verify_display_fragment_context_menu__copy_to_clipboard">Скопіювати до буфера обміну</string>
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">Порівняти із буфером обміну</string>
   <!--reminder_header-->
-  <string name="reminder_header_outdated_build">Ваша версія Signal застаріла</string>
-  <plurals name="reminder_header_outdated_build_details">
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_outdated_build">Ваша версія Signal застаріла</string> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="reminder_header_outdated_build_details">
     <item quantity="one">Вашу версію Сигналу перестануть підтримувати за %d день. Торкніться, щоб оновити до останньої версії.</item>
     <item quantity="few">Вашу версію Сигналу перестануть підтримувати за %d днів. Торкніться, щоб оновити до останньої версії.</item>
     <item quantity="many">Вашу версію Сигналу перестануть підтримувати за %d днів. Торкніться, щоб оновити до останньої версії.</item>
     <item quantity="other">Вашу версію Signal перестануть підтримувати за %d днів. Торкніться, щоб оновити до останньої версії.</item>
-  </plurals>
-  <string name="reminder_header_outdated_build_details_today">Вашу версію Signal перестануть підтримувати сьогодні. Торкніться, щоб оновити до останньої версії.</string>
-  <string name="reminder_header_expired_build">Ваша версія Signal застаріла!</string>
-  <string name="reminder_header_expired_build_details">Повідомлення більше не будуть відправлятися. Торкніться, щоб оновитися до останньої версії.</string>
+  </plurals> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_outdated_build_details_today">Вашу версію Signal перестануть підтримувати сьогодні. Торкніться, щоб оновити до останньої версії.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_expired_build">Ваша версія Signal застаріла!</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_expired_build_details">Повідомлення більше не будуть відправлятися. Торкніться, щоб оновитися до останньої версії.</string> -->
   <string name="reminder_header_sms_default_title">Використовувати як типову програму для SMS</string>
   <string name="reminder_header_sms_default_text">Торкніться, щоб зробити Signal типовою програмою для SMS.</string>
   <string name="reminder_header_sms_import_title">Імпортувати системну базу SMS?</string>

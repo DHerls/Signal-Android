@@ -10,7 +10,6 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import org.signal.zkgroup.InvalidInputException;
 import org.signal.zkgroup.profiles.ProfileKeyCredentialResponse;
 import org.whispersystems.libsignal.logging.Log;
-import org.whispersystems.signalservice.FeatureFlags;
 import org.whispersystems.signalservice.internal.util.JsonUtil;
 
 import java.util.UUID;
@@ -41,9 +40,6 @@ public class SignalServiceProfile {
 
   @JsonProperty
   private Capabilities capabilities;
-
-  @JsonProperty
-  private String username;
 
   @JsonProperty
   @JsonSerialize(using = JsonUtil.UuidSerializer.class)
@@ -80,10 +76,6 @@ public class SignalServiceProfile {
 
   public Capabilities getCapabilities() {
     return capabilities;
-  }
-
-  public String getUsername() {
-    return username;
   }
 
   public UUID getUuid() {
@@ -131,8 +123,6 @@ public class SignalServiceProfile {
   }
 
   public ProfileKeyCredentialResponse getProfileKeyCredentialResponse() {
-    if (!FeatureFlags.VERSIONED_PROFILES) return null;
-
     if (credential == null) return null;
 
     try {
